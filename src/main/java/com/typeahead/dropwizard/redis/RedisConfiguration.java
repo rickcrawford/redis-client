@@ -28,15 +28,21 @@ public class RedisConfiguration {
 	@JsonProperty
 	private int timeout = 2;
 	
+	@Min(0)
+	@Max(100)
+	@JsonProperty
+	private int db = 0;
+	
 	
 	public RedisConfiguration() {
 		
 	}
 	
-	public RedisConfiguration(String host, int port, int timeout) {
+	public RedisConfiguration(String host, int port, int timeout, int db) {
 		this.timeout = timeout;
 		this.host = host;
 		this.port = port;
+		this.db = db;
 	}
 
 	public String getHost() {
@@ -49,6 +55,10 @@ public class RedisConfiguration {
 
 	public int getTimeout() {
 		return timeout;
+	}
+	
+	public int getDb() {
+		return db;
 	}
 	
 	public String toString() {

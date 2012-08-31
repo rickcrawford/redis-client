@@ -30,11 +30,12 @@ public class RedisFactory {
 		final String host = configuration.getHost();
 		final int port = configuration.getPort();
 		final int timeout = configuration.getTimeout();
+		final int db = configuration.getDb();
 		final JedisPoolConfig config = new JedisPoolConfig();
-		final Redis conn = new Redis(config, host, port, timeout);
+		final Redis conn = new Redis(config, host, port, timeout, db);
 		
 		environment.manage(conn);
-		environment.addHealthCheck(new RedisHealthCheck(conn, name));
+		environment.addHealthCheck(new RedisHealthCheck(conn, name + "-" + db));
 		
 		return conn;
 	}

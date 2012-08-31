@@ -1,5 +1,7 @@
 package com.typeahead.dropwizard.redis;
 
+import java.util.Map;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -24,7 +26,7 @@ public class Redis extends JedisPool implements Managed {
 	 * @param port - redis port
 	 * @param timeout - timeout for connections
 	 */
-	public Redis(JedisPoolConfig config, String host, int port, int timeout) {
+	public Redis(JedisPoolConfig config, String host, int port, int timeout, int db) {
 		super(config, host, port, timeout);
 		LOG.debug("initializing redis {}", config, host, port, timeout);
 		
@@ -53,6 +55,4 @@ public class Redis extends JedisPool implements Managed {
 		this.destroy();
 	}
 
-	
-	
 }
